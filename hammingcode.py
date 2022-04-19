@@ -1,5 +1,5 @@
 #### CODIGO HAMMING
-option=int(input('1- Generar un código hamming  \n2- Eencontrar error en código hamming \n\t Selecciona la opción:--\n'))
+option=int(input('1- Generar un código hamming  \n2- Eencontrar error en código hamming \n--- Selecciona la opción: ---\n'))
 
 if(option==1):  # GENERAR CODIGO HAMMING 
     print('Introduce los bits de datos:')
@@ -44,7 +44,7 @@ if(option==1):  # GENERAR CODIGO HAMMING
 
 
 elif(option==2): # DETECTAR ERROR EN CODIGO HAMMING
-    print('INtroduce el código Hamming recivido:')
+    print('Introduce el código Hamming recivido:')
     d=input()
     data=list(d)
     data.reverse()
