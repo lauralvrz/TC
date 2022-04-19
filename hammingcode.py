@@ -2,7 +2,7 @@
 option=int(input('1- Generar un código hamming  \n2- Eencontrar error en código hamming \n\t Selecciona la opción:--\n'))
 
 if(option==1):  # GENERAR CODIGO HAMMING 
-    print('Enter the data bits')
+    print('Introduce los bits de datos:')
     d=input()
     data=list(d)
     data.reverse()
@@ -39,12 +39,12 @@ if(option==1):  # GENERAR CODIGO HAMMING
             ch+=1
 
     h.reverse()
-    print('Hamming code generated would be:- ', end="")
+    print('EL código Hamming generado es:- ', end="")
     print(int(''.join(map(str, h))))
 
 
-elif(option==2): # DETECT ERROR IN RECEIVED HAMMING CODE
-    print('Enter the hamming code received')
+elif(option==2): # DETECTAR ERROR EN CODIGO HAMMING
+    print('INtroduce el código Hamming recivido:')
     d=input()
     data=list(d)
     data.reverse()
@@ -78,23 +78,23 @@ elif(option==2): # DETECT ERROR IN RECEIVED HAMMING CODE
     error=sum(int(parity_list) * (2 ** i) for i, parity_list in enumerate(parity_list[::-1]))
     
     if((error)==0):
-        print('There is no error in the hamming code received')
+        print('No hay ningún error en el código Hamming recivido')
 
     elif((error)>=len(h_copy)):
-        print('Error cannot be detected')
+        print('El error no se puede detectar')
 
     else:
-        print('Error is in',error,'bit')
+        print('Error en el ',error,' bit')
 
         if(h_copy[error-1]=='0'):
             h_copy[error-1]='1'
 
         elif(h_copy[error-1]=='1'):
             h_copy[error-1]='0'
-            print('After correction hamming code is:- ')
+            print('El código Hamming corregido es:- ')
         h_copy.reverse()
         print(int(''.join(map(str, h_copy))))
 
 else:
-    print('Option entered does not exist')
+    print('La opcion seleccionada no existe')
 
