@@ -149,10 +149,10 @@ G = conjoin(I,B)
 Ht = transpose(conjoin(B,I))
 
 
-'''Codificando'''
+print('''Codificando''')
 
-# bitstream = get_bitstream('gettysburgh.txt')
-bitstream = get_bitstream('flower.png')
+bitstream = get_bitstream('texto.txt')
+# bitstream = get_bitstream('flower.png')
 padstream = padder(bitstream)
 
 # Inicializar la cadena para los datos codificados
@@ -171,7 +171,7 @@ bitstream_len = len(bitstream)
 encoded_len = len(encoded)
 
 
-'''Aleatorizando y Descodificando'''
+print('''Aleatorizando y Descodificando''')
 errbits = ''
 outbits = ''
 
