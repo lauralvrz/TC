@@ -149,7 +149,7 @@ G = conjoin(I,B)
 Ht = transpose(conjoin(B,I))
 
 
-print('''Codificando''')
+print('''--- Codificando ---''')
 
 bitstream = get_bitstream('texto.txt')
 # bitstream = get_bitstream('flower.png')
@@ -171,7 +171,7 @@ bitstream_len = len(bitstream)
 encoded_len = len(encoded)
 
 
-print('''Aleatorizando y Descodificando''')
+print('''--- Aleatorizando y Descodificando ---''')
 errbits = ''
 outbits = ''
 
@@ -277,5 +277,7 @@ for i in range(0,len(errbits_out),8):
     errmssg += outchar
 
 # Salida
+print("\n Mensaje con errores:")
 print(errmssg)
+print("\n Mensaje corregido:")
 print(mssg)
