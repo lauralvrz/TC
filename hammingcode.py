@@ -1,7 +1,7 @@
-#### DANIEL MUTHAMA
-option=int(input('Press 1 for generating hamming code  \nPress 2 for finding error in hamming code\n\t Enter your choice:--\n'))
+#### CODIGO HAMMING
+option=int(input('1- Generar un código hamming  \n2- Eencontrar error en código hamming \n\t Selecciona la opción:--\n'))
 
-if(option==1):  # GENERATE HAMMING CODE
+if(option==1):  # GENERAR CODIGO HAMMING 
     print('Enter the data bits')
     d=input()
     data=list(d)
