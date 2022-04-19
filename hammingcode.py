@@ -44,7 +44,7 @@ if(option==1):  # GENERAR CODIGO HAMMING
 
 
 elif(option==2): # DETECTAR ERROR EN CODIGO HAMMING
-    print('Introduce el código Hamming recivido:')
+    print('Introduce el código Hamming recibido:')
     d=input()
     data=list(d)
     data.reverse()
