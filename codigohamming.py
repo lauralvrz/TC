@@ -57,7 +57,7 @@ def comprimir_palabra(v, H, k):
         #print(str(sindrome))
         
         if colsincomas == str(sindrome):
-            print("ENTRO")
+            #print("ENTRO")
             ret[ncol] = (ret[ncol] + 1) % 2
             break
 
