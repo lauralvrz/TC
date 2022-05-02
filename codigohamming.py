@@ -42,22 +42,24 @@ def comprimir_palabra(v, H, k):
     """Esta funcion calcula el sindrome de v, decodifica la palabra usando el sindrome
     y devuelve los primeros k bits."""
 
-    sindrome = np.dot(H,v)
+    sindrome = np.dot(v, np.transpose(H))
     a_base_2(sindrome)
     ret = v
+    
+    columnas = [[0,0,1],[0,1,0],[0,1,1],[1,0,0],[1,0,1],[1,1,0],[1,1,1]]
 
     # Buscamos a que columna corresponde el sindrome y descodificamos
-    for ncol in range(len(H[0:])):
+    for ncol in range(len(H[0])):
 
-        columna = H[:ncol]
-        x = ""
-        for i in columna:
-            x += str(i)
+        columna = str(columnas[ncol])
+        colsincomas = columna.replace(",","")
+        #print(colsincomas)
+        #print(str(sindrome))
         
-        if x == str(sindrome):
+        if colsincomas == str(sindrome):
+            print("ENTRO")
             ret[ncol] = (ret[ncol] + 1) % 2
-        
-        break
+            break
 
     return ret[:k]
 
@@ -87,8 +89,7 @@ def comprimir_imagen(src, H, n, k):
         imagen_comprimida.extend(array[(palabras_completas-1)*n:])
         
     # Imagen comprimida
-    print(imagen_comprimida)
-    
+    # print(imagen_comprimida)
     
     # Debemos ademas guardar el shape para poder descomprimirla
     imagen_ret = { "array": imagen_comprimida, "shape": img.shape,
