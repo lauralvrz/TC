@@ -1,6 +1,9 @@
 import numpy as np
 from cv2 import cv2
 import sys
+import matplotlib.pyplot as plt
+import matplotlib.cm as cm
+from PIL import Image as im
 
 def imagen_a_array(img):
     """
@@ -76,6 +79,11 @@ def comprimir_imagen(src, H, n, k):
     if ((len(array)/float(n)) % 1 != 0):
         start = (palabras_completas-1) * n + n
         imagen_comprimida.extend(array[(palabras_completas-1)*n:])
+        
+    # Imagen comprimida
+    print(imagen_comprimida)
+    
+    
 
     # Debemos ademas guardar el shape para poder descomprimirla
     imagen_ret = { "array": imagen_comprimida, "shape": img.shape,
@@ -130,7 +138,7 @@ G = [[1,0,0,0,0,1,1],
 
 
 print("Comprimir y descomprimir imagenes usando Hamming(3,2):")
-comprimida = comprimir_imagen("raphael.tiff", H, 7, 4)
+comprimida = comprimir_imagen("Kanagawa.jpg", H, 7, 4)
 img4 = descomprimir_imagen(comprimida, G, 4)
 print("Tamanyo comprimida: ", comprimida['c_size'], " Tamanyo descomprimida: ",\
     comprimida['u_size'], " Ratio: ",\
