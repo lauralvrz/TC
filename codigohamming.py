@@ -49,9 +49,15 @@ def comprimir_palabra(v, H, k):
     # Buscamos a que columna corresponde el sindrome y descodificamos
     for ncol in range(len(H[0:])):
 
-        if (H[:ncol] == sindrome):
+        columna = H[:ncol]
+        x = ""
+        for i in columna:
+            x += str(i)
+        
+        if x == str(sindrome):
             ret[ncol] = (ret[ncol] + 1) % 2
-            break
+        
+        break
 
     return ret[:k]
 
@@ -84,7 +90,6 @@ def comprimir_imagen(src, H, n, k):
     print(imagen_comprimida)
     
     
-
     # Debemos ademas guardar el shape para poder descomprimirla
     imagen_ret = { "array": imagen_comprimida, "shape": img.shape,
         "u_size": sys.getsizeof(array), "c_size": sys.getsizeof(imagen_comprimida) }
@@ -123,6 +128,9 @@ def descomprimir_imagen(img_c, G, k):
         ret.append(0)
 
     img = np.array(ret).reshape(img_c['shape'])
+    
+    plt.imshow(img, interpolation='nearest')
+    plt.show()
 
     return img
 
