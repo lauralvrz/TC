@@ -32,7 +32,7 @@ B = [[0,1,1,1,1,1,1,1,1,1,1,1],
 
 
 # Función de aleatorización para simular la transmisión por un canal ruidoso
-def randomize(bitstring, p=0.01):
+def randomize(bitstring, p=0.02):
     result = ''
     for bit in bitstring:
         if random.uniform(0,1) <= p:
