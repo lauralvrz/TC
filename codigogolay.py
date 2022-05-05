@@ -44,7 +44,7 @@ def randomize(bitstring, p=0.02):
     return result
 
 
-# Multiplicar dos matrices sobre el campo de Galois GF2
+# Multiplicar dos matrices
 def GF2_matrix(A,B):
     C_rows = len(A)
     C_cols = len(B[0])
@@ -88,7 +88,7 @@ def get_column(matrix, col_num):
     return B_col
 
 
-# Añadir dos vectores sobre el campo de Galois GF2
+# Sumar dos vectores
 def add_vectors(A,B):
     length = len(A[0])
     C = [[0]*length]
@@ -113,6 +113,7 @@ def string_from_vector(vector):
 #             bitstream += binary
 #     return bitstream
 
+# Devuelve la cadena (parametro) como una cadena de bits
 def get_bitstream(cadena):
     # cadenaB = cadena.encode("utf-8")
     bitstream = ''
@@ -142,7 +143,7 @@ def unpadder(bitstream, wordlength=12):
     return bitstream[wordlength:-padlength]
 
 
-# Convertir una cadena de bits en un vector GF2
+# Convertir una cadena de bits en un vector
 def get_vector(word):
     vector = [[]]
     for char in word:
@@ -285,11 +286,9 @@ for palabra in texto:
     errbits_out = errbits_out[12:]
 
     # Convertir los bits del mensaje corregido en una cadena
-    
     for i in range(0,len(outbits),8):
         charbits = outbits[i:i+8]
         outchar = chr(int(charbits,2))
-        # mssg += outchar.to_bytes((outchar.bit_length() + 7) // 8, 'big').decode()
         mssg += outchar
 
     # Convertir los bits de los mensajes no corregidos en una cadena
