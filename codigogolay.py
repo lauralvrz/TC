@@ -163,6 +163,7 @@ print('''--- Codificando ---''')
 # archivo = open("texto.txt", "r")
 #texto = archivo.read()
 
+# Leemos el archivo
 with open("texto.txt", 'rb') as fh:
     texto = fh.read()
 
@@ -178,7 +179,7 @@ for palabra in texto:
     encoded = ''
 
     # Dividir los datos en palabras de 12 bits, codificar cada palabra
-    # utilizando el código binario extendido de Golay y convertirlo en cadena
+    # utilizando el código binario de Golay y convertirlo en cadena
     for index in range(0,len(padstream),wordlength):
         word = padstream[index:index+wordlength]
         vector = get_vector(word)
