@@ -158,7 +158,7 @@ G = conjoin(I,A)
 Ht = transpose(conjoin(A,I))
 
 
-print('''--- Codificando ---''')
+print("--- Codificando ---")
 
 # archivo = open("texto.txt", "r")
 #texto = archivo.read()
@@ -301,9 +301,23 @@ for palabra in texto:
     msgerror += errmssg
     msgcorregido += mssg
     
+# Para poder mostrar colores por pantalla
+class color:
+   PURPLE = '\033[95m'
+   CYAN = '\033[96m'
+   DARKCYAN = '\033[36m'
+   BLUE = '\033[94m'
+   GREEN = '\033[92m'
+   YELLOW = '\033[93m'
+   RED = '\033[91m'
+   BOLD = '\033[1m'
+   UNDERLINE = '\033[4m'
+   END = '\033[0m'    
+
+
 # Salida
-print("\n Mensaje con errores:")
+print(color.RED +"\n Mensaje con errores:" + color.END)
 print(msgerror)
-print("\n Mensaje corregido:")
+print(color.GREEN + "\n Mensaje corregido:" + color.END)
 print(msgcorregido)
 print("\n")
