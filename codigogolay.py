@@ -261,15 +261,16 @@ for palabra in texto:
                         else:
                             error = [[0] * 24]
 
-
+        # Si no se detecta error
         if not error:
             error = [[0] * 24]
+        
         # Palabra de Golay corregida = (vector recibido) - (vector de error)
         corrected = add_vectors(wordvector,error)
         corr_str = string_from_vector(corrected)
+        
         # Texto transmitido = primera mitad de la palabra Golay corregida
         outbits += corr_str[:12]
-
 
     # Obtener los bits del mensaje recibido no corregido (para comparar con el mensaje corregido)
     errbits_out = ''
