@@ -17,7 +17,7 @@ I = [[1,0,0,0,0,0,0,0,0,0,0,0],
      [0,0,0,0,0,0,0,0,0,0,1,0],
      [0,0,0,0,0,0,0,0,0,0,0,1]]
 
-B = [[0,1,1,1,1,1,1,1,1,1,1,1],
+A = [[0,1,1,1,1,1,1,1,1,1,1,1],
      [1,1,1,0,1,1,1,0,0,0,1,0],
      [1,1,0,1,1,1,0,0,0,1,0,1],
      [1,0,1,1,1,0,0,0,1,0,1,1],
@@ -45,26 +45,26 @@ def randomize(bitstring, p=0.02):
 
 
 # Multiplicar dos matrices
-def GF2_matrix(A,B):
-    C_rows = len(A)
-    C_cols = len(B[0])
-    C = [[0 for k in range(C_cols)] for i in range(C_rows)]
+def GF2_matrix(X,Y):
+    Z_rows = len(X)
+    Z_cols = len(Y[0])
+    Z = [[0 for k in range(Z_cols)] for i in range(Z_rows)]
 
-    for i in range(C_rows):
-        for k in range(C_cols):
-            for j in range(len(A[0])):
-                C[i][k] ^= (A[i][j] & B[j][k])
-    return C
+    for i in range(Z_rows):
+        for k in range(Z_cols):
+            for j in range(len(X[0])):
+                Z[i][k] ^= (X[i][j] & Y[j][k])
+    return Z
 
 
-# Dada la matriz (n x i) A y la matriz (n x j) B,
-# devuelve la matriz (n x (i + j)) (A|B)
-def conjoin(A,B):
-    columns = len(A[0]) + len(B[0])
-    rows = len(A)
+# Dada la matriz (n x i) X y la matriz (n x j) Y,
+# devuelve la matriz (n x (i + j)) (X|Y)
+def conjoin(X,Y):
+    columns = len(X[0]) + len(Y[0])
+    rows = len(X)
     conjoined = [0] * rows
     for row in range(rows):
-        conjoined[row] = A[row] + B[row]
+        conjoined[row] = X[row] + Y[row]
     return conjoined
 
 
@@ -80,21 +80,21 @@ def transpose(matrix):
     return transposed
 
 
-# Devuelve la columna n de la matriz
+# Devuelve la columna número "col_num" de la matriz
 def get_column(matrix, col_num):
-    B_col = [[0] * len(matrix[0])]
-    for k in range(len(B[0])):
-        B_col[0][k] = B[col_num][k]
-    return B_col
+    toret_col = [[0] * len(matrix[0])]
+    for k in range(len(A[0])):
+        toret_col[0][k] = A[col_num][k]
+    return toret_col
 
 
 # Sumar dos vectores
-def add_vectors(A,B):
-    length = len(A[0])
-    C = [[0]*length]
+def add_vectors(X,Y):
+    length = len(X[0])
+    Z = [[0]*length]
     for index in range(length):
-        C[0][index] = A[0][index] ^ B[0][index]
-    return C
+        Z[0][index] = X[0][index] ^ Y[0][index]
+    return Z
 
 
 # Unir los elementos de un vector y devolver una cadena de bits
@@ -115,7 +115,6 @@ def string_from_vector(vector):
 
 # Devuelve la cadena (parametro) como una cadena de bits
 def get_bitstream(cadena):
-    # cadenaB = cadena.encode("utf-8")
     bitstream = ''
     # for byte in cadena:
     binary = '{0:08b}'.format(cadena)
@@ -151,12 +150,12 @@ def get_vector(word):
     return vector
 
 
-# Obtener la matriz generadora del código Golay binario extendido (G24)
-G = conjoin(I,B)
+# Obtener la matriz generadora del código Golay binario (G24)
+G = conjoin(I,A)
 
 
 # Obtener la transposición de la matriz de comprobación de paridad para G24
-Ht = transpose(conjoin(B,I))
+Ht = transpose(conjoin(A,I))
 
 
 print('''--- Codificando ---''')
@@ -219,8 +218,8 @@ for palabra in texto:
             S1_dict = {}
             small_weights = {}
             for j in range(12):
-                sum_vec = add_vectors(syndrome1,get_column(B,j)) #S1 + Bi
-                syn_weight = sum(sum_vec[0]) #w(S1 + Bi)
+                sum_vec = add_vectors(syndrome1,get_column(A,j)) #S1 + Ai
+                syn_weight = sum(sum_vec[0]) #w(S1 + Ai)
                 wt = (syn_weight, sum_vec)
                 if syn_weight <= 2:
                     small_weights[j] = wt
@@ -241,7 +240,7 @@ for palabra in texto:
             # Caso 2.3: todos los pesos de los subvectores > 3
             else:
                 # Calcular el síndrome2
-                syndrome2 = GF2_matrix(syndrome1, transpose(B))
+                syndrome2 = GF2_matrix(syndrome1, transpose(A))
                 weight2 = sum(syndrome2[0])
 
                 # Caso 2.3.1: Si el peso del síndrome2 <= 3, conocemos el error
@@ -254,7 +253,7 @@ for palabra in texto:
                     small_weights = {}
                     for j in range(12):
                         wt = ()
-                        sum_vec = add_vectors(syndrome2, get_column(B, j))
+                        sum_vec = add_vectors(syndrome2, get_column(A, j))
                         syn_weight = sum(sum_vec[0])
                         wt = (syn_weight, sum_vec)
                         if syn_weight <= 2:
