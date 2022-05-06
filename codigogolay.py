@@ -172,8 +172,6 @@ msgcorregido = ''
 for palabra in texto:
     bitstream = get_bitstream(palabra)
 
-    # bitstream = get_bitstream('texto.txt')
-    # bitstream = get_bitstream('flower.png')
     padstream = padder(bitstream)
 
     # Inicializar la cadena para los datos codificados
