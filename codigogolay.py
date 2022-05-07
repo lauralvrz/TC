@@ -158,7 +158,7 @@ G = conjoin(I,A)
 Ht = transpose(conjoin(A,I))
 
 
-print("--- Codificando ---")
+print("\n--- Codificando ---")
 
 # archivo = open("texto.txt", "r")
 #texto = archivo.read()
@@ -171,8 +171,8 @@ msgerror = ''
 msgcorregido = ''
 
 for palabra in texto:
+    # Convertimos la palabra a binario
     bitstream = get_bitstream(palabra)
-
     padstream = padder(bitstream)
 
     # Inicializar la cadena para los datos codificados
@@ -187,9 +187,9 @@ for palabra in texto:
         Golay_word = string_from_vector(Golay_vector)
         encoded += Golay_word
 
+    # Longitud de la palabra antes y despues de codificarla
     bitstream_len = len(bitstream)
     encoded_len = len(encoded)
-
 
     errbits = ''
     outbits = ''
