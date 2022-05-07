@@ -37,8 +37,9 @@ El objetivo de esta práctica es implementar el código de Golay binario _G<sub>
 
 ### 2. Funcionamiento
 
-Primero se lee el archivo de texto para poder iniciar la transmisión. Las palabras del texto se pasan a binario, se dividen en palabras de 12 bits y se codifican utilizando el código binario de Golay. Luego se obtienen segmentos de 24 bits del conjunto de palabras codificadas y se aleatorizan para simular el canal con ruido.
-Para cada uno de estos segmentos de 24 bits se aplica el siguiente algoritmo:
+![Transmisión Golay](Golay.png)
+Primero se lee el archivo de texto que contiene la información a transmitir. Las palabras del texto se pasan a binario, se dividen en palabras de 12 bits y se codifican utilizando el código binario de Golay. Luego se obtienen segmentos de 24 bits del conjunto de palabras codificadas y se aleatorizan para simular el canal con ruido.
+Para cada uno de estos segmentos de 24 bits recibidos se aplica el siguiente algoritmo para comprobar si hubo algún error en la transmisión:
 
 
 _**Algortimo:**_ Recibida una palabra binaria _**r**_ de longitud 24,
