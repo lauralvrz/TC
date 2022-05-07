@@ -5,7 +5,7 @@ date: "10 Mayo 2022"
 output: pdf_document
 ---
 
-<span style="font-family: Noto Serif">
+<span style="font-family: Cambria">
 
 ## Código de Golay binario _G<sub>24</sub>_
 
@@ -40,5 +40,14 @@ El objetivo de esta práctica es implementar el código de Golay binario _G<sub>
 Primero se lee el archivo de texto para poder iniciar la transmisión. Las palabras del texto se pasan a binario, se dividen en palabras de 12 bits y se codifican utilizando el código binario de Golay. Luego se obtienen segmentos de 24 bits del conjunto de palabras codificadas y se aleatorizan para simular el canal con ruido.
 Para cada uno de estos segmentos de 24 bits se aplica el siguiente algoritmo:
 
+
 _**Algortimo:**_ Recibida una palabra binaria _**r**_ de longitud 24,
-(i) Se calcula el síndrome de la palabra recibida, _**s**_ = _**r**_ _G<sup> tr</sup>_.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(i) Se calcula el síndrome de la palabra recibida, _**s**_ = _**r**_ _G<sup> tr</sup>_.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(ii) Si _w(**s**)_ $\leq$ 3, entonces el vector error es _**e**_ = _(**s, 0**)_.
+&nbsp;&nbsp;&nbsp;&nbsp;(iii) Si _w(**s**_ + _**a<sub>i</sub>** )_ $\leq$ 2, para alguna fila _**a<sub>i</sub>**_ de la matriz _A_, entonces el vector de error es _**e**_ = _(**s**_ + _**a<sub>i</sub>** , **u<sub>i</sub>** )_.
+&nbsp;&nbsp;&nbsp;&nbsp;(iv) Se calcula el segundo síndrome de la palabra _**r**_, _**s**A_.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(v) Si _w(**s**A)_ $\leq$ 3, entonces el vector error es _**e**_ = _(**0**, **s**A)_.
+&nbsp;&nbsp;&nbsp;&nbsp;(vi) Si _w(**s**A_ + _**a<sub>i</sub>** )_ $\leq$ 2 para alguna fila _**a<sub>i</sub>**_ de la matriz _A_, entonces el vector error es _**e**_ = _(**u<sub>i</sub>** , **s**A_ + _**a<sub>i</sub>**)_.
+&nbsp;&nbsp;&nbsp;(vii) Si todavía no se ha determinado el vector error _**e**_, se han producido más de tres errores.
+
+Una vez detectado el error, para obtener la palabra corregida tenemos que restarle el vector de error al vector que se ha transmitido previamente. Luego, guardamos las palabras transimitas tanto corregidas como sin corregir, así podemos hacer una mejor comparación entre texto enviado con errores y el corregido.
