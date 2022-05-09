@@ -37,9 +37,12 @@ El objetivo de esta práctica es implementar el código de Golay binario _G<sub>
 
 ### 2. Funcionamiento
 
+<br>
+
 ![Transmisión Golay](Golay.png)
-Primero se lee el archivo de texto que contiene la información a transmitir. Las palabras del texto se pasan a binario, se dividen en palabras de 12 bits y se codifican utilizando el código binario de Golay. Luego se obtienen segmentos de 24 bits del conjunto de palabras codificadas y se aleatorizan para simular el canal con ruido.
-Para cada uno de estos segmentos de 24 bits recibidos se aplica el siguiente algoritmo para comprobar si hubo algún error en la transmisión:
+
+Primero se lee el archivo de texto que contiene la información a transmitir. Las palabras del texto se pasan a binario, además en caso de que la longitud de la palabra binaria no sea múltiplo de 12 se le añaden 1s para que sí lo sea, luego se dividen en palabras de 12 bits y se codifican utilizando el código binario de Golay. Luego se obtienen segmentos de 24 bits del conjunto de palabras codificadas y se aleatorizan para simular el canal con ruido.
+Para cada uno de estos segmentos de 24 bits recibidos se aplica el siguiente algoritmo para descodificarlos y comprobar si hubo algún error en la transmisión:
 
 
 _**Algortimo:**_ Recibida una palabra binaria _**r**_ de longitud 24,
@@ -51,4 +54,5 @@ _**Algortimo:**_ Recibida una palabra binaria _**r**_ de longitud 24,
 &nbsp;&nbsp;&nbsp;&nbsp;(vi) Si _w(**s**A_ + _**a<sub>i</sub>** )_ $\leq$ 2 para alguna fila _**a<sub>i</sub>**_ de la matriz _A_, entonces el vector error es _**e**_ = _(**u<sub>i</sub>** , **s**A_ + _**a<sub>i</sub>**)_.
 &nbsp;&nbsp;&nbsp;(vii) Si todavía no se ha determinado el vector error _**e**_, se han producido más de tres errores.
 
-Una vez detectado el error, para obtener la palabra corregida tenemos que restarle el vector de error al vector que se ha transmitido previamente. Luego, guardamos las palabras transimitas tanto corregidas como sin corregir, así podemos hacer una mejor comparación entre texto enviado con errores y el corregido.
+Una vez detectado el error, para obtener la palabra corregida, tenemos que restarle el vector de error al vector que se ha transmitido previamente. Luego, guardamos las palabras transimitas, tanto corregidas como sin corregir, y así podemos hacer una mejor comparación entre el texto enviado con errores y el corregido.
+
