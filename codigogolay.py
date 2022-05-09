@@ -31,7 +31,7 @@ A = [[0,1,1,1,1,1,1,1,1,1,1,1],
      [1,0,1,1,0,1,1,1,0,0,0,1]]
 
 
-# Función de aleatorización para simular la transmisión por un canal ruidoso
+# Función de aleatorización para simular la transmisión por un canal con ruido
 def randomize(bitstring, p=0.02):
     resultado = ''
     for bit in bitstring:
