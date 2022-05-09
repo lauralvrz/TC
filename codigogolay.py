@@ -60,7 +60,6 @@ def multiplicar_matrices(X,Y):
 # Dada la matriz (n x i) X y la matriz (n x j) Y,
 # devuelve la matriz (n x (i + j)) (X|Y)
 def concatenar(X,Y):
-    num_columnas = len(X[0]) + len(Y[0])
     num_filas = len(X)
     resultado = [0] * num_filas
     for fila in range(num_filas):
