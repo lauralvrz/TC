@@ -169,15 +169,11 @@ for palabra in texto:
         Golay_palabra = vector_a_string(Golay_vector)
         encoded += Golay_palabra
 
-    # Longitud de la palabra antes y despues de codificarla
-    bitstream_len = len(bitstream)
-    encoded_len = len(encoded)
-
     palabra_error = '' # Inicializamos la palabra con errores
     palabra_corregida = '' # Inicializamos la palabra corregida
 
     # Obtener segmentos de 24 bits del flujo de bits codificado y aleatorizarlos
-    for index in range(0,encoded_len,24):
+    for index in range(0,len(encoded),24):
         palabra_24 = encoded[index:index+24]
         palabra_24 = randomize(palabra_24)
         palabra_error += palabra_24 # Añade los bits aleatorios a palabra_error (msg recibido)
