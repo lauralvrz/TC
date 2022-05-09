@@ -116,9 +116,9 @@ def get_bits(cadena):
 def rellenar(bitstream, longitud=12):
     prefijo, padding = '',''
     length = len(bitstream)
-    remainder = length % longitud
-    if remainder != 0:
-        padlength = longitud - remainder
+    resto = length % longitud
+    if resto != 0:
+        padlength = longitud - resto
         prefijo = '{0:012b}'.format(padlength)
         padding = '1' * padlength
     return prefijo + bitstream + padding
