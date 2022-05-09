@@ -229,6 +229,7 @@ for palabra in texto:
                         sum_vec = sumar_vectores(sindrome2, get_fila(A, j))
                         peso_fila = sum(sum_vec[0])
                         wt = (peso_fila, sum_vec)
+                        # Si el peso del síndrome2 <= 2, conocemos el error
                         if peso_fila <= 2:
                             error = [sum_vec[0] + I[j]]
                             break
