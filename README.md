@@ -58,7 +58,8 @@ _**Algortimo:**_ Recibida una palabra binaria _**r**_ de longitud 24,
 - (v) Si _w(**s**A)_ $\leq$ 3, entonces el vector error es _**e**_ = _(**0**, **s**A)_.
 &nbsp;&nbsp;&nbsp;&nbsp;
 - (vi) Si _w(**s**A_ + _**a<sub>i</sub>** )_ $\leq$ 2 para alguna fila _**a<sub>i</sub>**_ de la matriz _A_, entonces el vector error es _**e**_ = _(**u<sub>i</sub>** , **s**A_ + _**a<sub>i</sub>**)_.
-&nbsp;&nbsp;&nbsp;(vii) Si todavía no se ha determinado el vector error _**e**_, se han producido más de tres errores.
+&nbsp;&nbsp;&nbsp;
+- (vii) Si todavía no se ha determinado el vector error _**e**_, se han producido más de tres errores.
 
 Una vez detectado el error, para obtener la palabra corregida, tenemos que restarle el vector de error al vector que se ha transmitido previamente. Luego, guardamos las palabras transmitidas, tanto corregidas como sin corregir, y así podemos hacer una mejor comparación entre el texto enviado con errores y el corregido.
 
